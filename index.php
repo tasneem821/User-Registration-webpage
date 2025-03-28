@@ -25,7 +25,7 @@
                 <span class="error-message" id="whats_error"></span>
                 <br>
               
-                <input type="text " id="address" placeholder="Address">
+                <input type="text " id="address" placeholder="Address"style="margin-bottom: 17px;">
                 <br>
                
                 <input type="password" id="password" placeholder="Password" required onblur="Validate_Password()">
