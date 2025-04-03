@@ -1,54 +1,77 @@
-<?php include 'header.php'; ?>
+<?php include 'header.php'; require_once 'DB_Ops.php'; // Include the database operations file
 
-    <div class="container">
-        <div class="title">
-        <h1 class="form-title">
-            Registration form
-        </h1>
-        </div>
-        <form method="POST">
-        
-               
-                <input type="text " id="fullname" placeholder="Full Name"  required onblur="Validate_FullName()">
-                <span class="error-message" id="fullname_error"></span>
-                <br>
-              
-                <input type="text " id="username" placeholder="Username"    required onblur="Validate_UserName()">
-                <span class="error-message" id="username_error"></span>
-                <br>
-               
-                <input type="text " id="phone" placeholder="Phone"   required onblur="Validate_Phone()">
-                <span class="error-message" id="phone_error"></span>
-                <br>
-               
-                <input type="text "id="whats" placeholder="WhatsApp number"   required onblur="Validate_WhatsApp()">
-                <span class="error-message" id="whats_error"></span>
-                <br>
-              
-                <input type="text " id="address" placeholder="Address"style="margin-bottom: 17px;">
-                <br>
-               
-                <input type="password" id="password" placeholder="Password" required onblur="Validate_Password()">
-                <span class="error-message" id="password_error"></span>
-                <br>
-                
-                <input type="password" id="confirmPassword" placeholder="Confirm Password"  required onblur="Validate_Confirm_Password()">
-                <span class="error-message" id="confirmPassword_error"></span>
-                <br>
-                
-                <input type="email" id="email" placeholder="Email"   required onblur="Validate_Email()">
-                <span class="error-message" id="email_error"></span>
-                <br>
-                <label for="img">  User Image</label>
-                <input type="file" id="imageUpload" accept="image/*">
-                <img id="preview" style="max-width: 200px; display: none;">
-                <br>
-                <input type="submit" value="Submit"  onclick="return Validate_Form()">
-                
-     
-        </form>
+$db = new DB_Ops(); // Create a new instance of the DB_Ops class
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $full_name = $_POST['fullname'];
+    $user_name = $_POST['username'];
+    $phone = $_POST['phone'];
+    $whatsapp = $_POST['whats'];
+    $address = $_POST['address'];
+    $password = $_POST['password'];
+    $email = $_POST['email'];
+    $user_image = "";
+
+    // Handle Image Upload
+    if (isset($_FILES['imageUpload']) && $_FILES['imageUpload']['error'] == 0) {
+        $target_dir = "uploads/"; // Directory to store uploaded images
+        if (!file_exists($target_dir)) {
+            mkdir($target_dir, 0777, true); // Create directory if it doesn't exist
+        }
+
+        $image_name = basename($_FILES['imageUpload']['name']);
+        $target_file = $target_dir . $image_name;
+
+        if (move_uploaded_file($_FILES['imageUpload']['tmp_name'], $target_file)) {
+            $user_image = $image_name; // Store only the image name in the database
+        } else {
+            echo "<script>alert('Error uploading image.');</script>";
+        }
+    }
+
+    // Insert user into database
+    if ($db->insertUser($full_name, $user_name, $phone, $whatsapp, $address, $password, $email, $user_image)) {
+        echo "<script>alert('Registration successful!');</script>";
+    } else {
+        echo "<script>alert('Error registering user.');</script>";
+    }
+}
+?>
+
+<div class="container">
+    <div class="title">
+        <h1 class="form-title">Registration Form</h1>
     </div>
+    <form method="POST" enctype="multipart/form-data">
+        <input type="text" id="fullname" name="fullname" placeholder="Full Name" required onblur="Validate_FullName()">
+        <span class="error-message" id="fullname_error"></span><br>
 
+        <input type="text" id="username" name="username" placeholder="Username" required onblur="Validate_UserName()">
+        <span class="error-message" id="username_error"></span><br>
+
+        <input type="text" id="phone" name="phone" placeholder="Phone" required onblur="Validate_Phone()">
+        <span class="error-message" id="phone_error"></span><br>
+
+        <input type="text" id="whats" name="whats" placeholder="WhatsApp number" required onblur="Validate_WhatsApp()">
+        <span class="error-message" id="whats_error"></span><br>
+
+        <input type="text" id="address" name="address" placeholder="Address" required><br>
+
+        <input type="password" id="password" name="password" placeholder="Password" required onblur="Validate_Password()">
+        <span class="error-message" id="password_error"></span><br>
+
+        <input type="password" id="confirmPassword" placeholder="Confirm Password" required onblur="Validate_Confirm_Password()">
+        <span class="error-message" id="confirmPassword_error"></span><br>
+
+        <input type="email" id="email" name="email" placeholder="Email" required onblur="Validate_Email()">
+        <span class="error-message" id="email_error"></span><br>
+
+        <label for="imageUpload">User Image</label>
+        <input type="file" id="imageUpload" name="imageUpload" accept="image/*" required><br>
+
+        <input type="submit" value="Submit" onclick="return Validate_Form()">
+    </form>
+</div>
 
 
 <script>
