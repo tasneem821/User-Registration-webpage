@@ -1,6 +1,9 @@
-<?php include 'header.php'; require_once 'DB_Ops.php'; // Include the database operations file
+<?php 
+include 'header.php'; 
+require_once 'DB_Ops.php'; 
+require_once 'Upload.php';
 
-$db = new DB_Ops(); // Create a new instance of the DB_Ops class
+$db = new DB_Ops();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $full_name = $_POST['fullname'];
@@ -12,20 +15,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'];
     $user_image = "";
 
-    // Handle Image Upload
-    if (isset($_FILES['imageUpload']) && $_FILES['imageUpload']['error'] == 0) {
-        $target_dir = "uploads/"; // Directory to store uploaded images
-        if (!file_exists($target_dir)) {
-            mkdir($target_dir, 0777, true); // Create directory if it doesn't exist
-        }
-
-        $image_name = basename($_FILES['imageUpload']['name']);
-        $target_file = $target_dir . $image_name;
-
-        if (move_uploaded_file($_FILES['imageUpload']['tmp_name'], $target_file)) {
-            $user_image = $image_name; // Store only the image name in the database
+    if (isset($_FILES['imageUpload'])) {
+        $uploadResult = validateAndUploadImage($_FILES['imageUpload']);
+        
+        if ($uploadResult['success']) {
+            $user_image = $uploadResult['filename'];
         } else {
-            echo "<script>alert('Error uploading image.');</script>";
+            echo "<script>alert('".$uploadResult['message']."');</script>";
         }
     }
 
@@ -37,7 +33,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 ?>
-
 <div class="container">
     <div class="title">
         <h1 class="form-title">Registration Form</h1>

@@ -4,20 +4,49 @@ class DB_Ops {
 
     public function __construct() {
         $host = "localhost";
-        $db_name = "registration_db";  // Fixed database name
-        $username = "ADMIN";  
-        $password = "12345";
+        $db_name = "registration_db";  
+        $username = "root";  
+        $password = "";
 
-        // Establish database connection
-        $this->conn = new mysqli($host, $username, $password, $db_name);
+        $this->conn = new mysqli($host, $username, $password);
 
-        // Check connection
         if ($this->conn->connect_error) {
             die("Connection failed: " . $this->conn->connect_error);
         }
+
+        $this->createDatabase($db_name);
+
+        $this->conn->select_db($db_name);
+
+        $this->createUsersTable();
     }
 
-   
+    private function createDatabase($db_name) {
+        $sql = "CREATE DATABASE IF NOT EXISTS $db_name";
+        if ($this->conn->query($sql) === FALSE) {
+            echo "Error creating database: " . $this->conn->error;
+        }
+    }
+
+    private function createUsersTable() {
+        $sql = "CREATE TABLE IF NOT EXISTS users (
+            id INT AUTO_INCREMENT PRIMARY KEY,
+            full_name VARCHAR(100) NOT NULL,
+            user_name VARCHAR(50) NOT NULL UNIQUE,
+            phone VARCHAR(15) NOT NULL,
+            whatsapp VARCHAR(15),
+            address TEXT,
+            password VARCHAR(255) NOT NULL,
+            email VARCHAR(100) NOT NULL UNIQUE,
+            user_image VARCHAR(255),
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        )";
+
+        if ($this->conn->query($sql) === FALSE) {
+            echo "Error creating table: " . $this->conn->error;
+        }
+    }
+
     public function insertUser($full_name, $user_name, $phone, $whatsapp, $address, $password, $email, $user_image) {
         $hashed_password = password_hash($password, PASSWORD_BCRYPT);
     
@@ -37,7 +66,5 @@ class DB_Ops {
         $stmt->bind_param("ssssssss", $full_name, $user_name, $phone, $whatsapp, $address, $hashed_password, $email, $user_image);
         return $stmt->execute();
     }
-    
 }
 ?>
-
