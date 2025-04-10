@@ -41,7 +41,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <input type="text" id="fullname" name="fullname" placeholder="Full Name" required onblur="Validate_FullName()">
         <span class="error-message" id="fullname_error"></span><br>
 
-        <input type="text" id="username" name="username" placeholder="Username" required onblur="Validate_UserName()">
+        <input type="text" id="username" name="username" placeholder="Username" required onblur="Validate_UserName_ServerSide(this.value)">
         <span class="error-message" id="username_error"></span><br>
 
         <input type="text" id="phone" name="phone" placeholder="Phone" required onblur="Validate_Phone()">
@@ -203,7 +203,20 @@ function Validate_FullName() {
     return isValid;
 }
 
-
+function Validate_UserName_ServerSide(str){
+    if(Validate_UserName()){
+        var error = document.getElementById("username_error");
+        var xmlhttp=new XMLHttpRequest();
+        xmlhttp.onreadystatechange=function(){
+        if(this.readyState==4&&this.status==200){
+            error.innerHTML=this.responseText;
+        }
+    };
+    xmlhttp.open("GET","DB_Ops.php?q="+str);
+    xmlhttp.send();
+    }
+    
+}
 </script>
 
     <?php include 'footer.php'; ?>

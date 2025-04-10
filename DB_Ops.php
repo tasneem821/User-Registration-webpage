@@ -57,7 +57,7 @@ class DB_Ops {
         $result = $check_stmt->get_result();
     
         if ($result->num_rows > 0) {
-            echo "<script>alert('Username already exists. Please choose another one.');</script>";
+            // echo "<script>alert('Username already exists. Please choose another one.');</script>";
             return false;
         }
     
@@ -66,5 +66,25 @@ class DB_Ops {
         $stmt->bind_param("ssssssss", $full_name, $user_name, $phone, $whatsapp, $address, $hashed_password, $email, $user_image);
         return $stmt->execute();
     }
+    public function checkUserNameExist($q){
+        $stmt = mysqli_stmt_init($this->conn);
+        $sql="select user_name FROM users WHERE user_name = ?";
+        $result=0;
+        if (mysqli_stmt_prepare($stmt,$sql)){
+            mysqli_stmt_bind_param($stmt , "s", $q);
+            mysqli_stmt_execute($stmt);
+            $result = mysqli_stmt_get_result($stmt);
+            if ($result->num_rows > 0) {
+                echo "Username already exists. Please choose another one.";
+            }
+        }
+        else{
+            echo "";
+        }
+    }
+}
+if (isset($_REQUEST["q"])) {
+    $db = new DB_Ops();
+    $db->checkUserNameExist($_REQUEST["q"]);
 }
 ?>
