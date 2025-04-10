@@ -69,7 +69,6 @@ class DB_Ops {
     public function checkUserNameExist($q){
         $stmt = mysqli_stmt_init($this->conn);
         $sql="select user_name FROM users WHERE user_name = ?";
-        $result=0;
         if (mysqli_stmt_prepare($stmt,$sql)){
             mysqli_stmt_bind_param($stmt , "s", $q);
             mysqli_stmt_execute($stmt);
