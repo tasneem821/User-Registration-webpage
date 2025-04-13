@@ -48,6 +48,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <span class="error-message" id="phone_error"></span><br>
 
         <input type="text" id="whats" name="whats" placeholder="WhatsApp number" required onblur="Validate_WhatsApp()">
+        <button type="button" onclick="validateWhatsApp()">Check number</button>
         <span class="error-message" id="whats_error"></span><br>
 
         <input type="text" id="address" name="address" placeholder="Address" required><br>
@@ -220,3 +221,4 @@ function Validate_UserName_ServerSide(str){
 </script>
 
     <?php include 'footer.php'; ?>
+    <script src="API_Ops.js"></script>
