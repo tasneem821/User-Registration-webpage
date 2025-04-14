@@ -39,33 +39,41 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <h1 class="form-title">Registration Form</h1>
     </div>
     <form method="POST" enctype="multipart/form-data">
+        <span class="required">*</span>
         <input type="text" id="fullname" name="fullname" placeholder="Full Name" required onblur="Validate_FullName()">
         <span class="error-message" id="fullname_error"></span><br>
 
+        <span class="required">*</span>
         <input type="text" id="username" name="username" placeholder="Username" required onblur="Validate_UserName_ServerSide(this.value)">
         <span class="error-message" id="username_error"></span><br>
 
+        <span class="required">*</span>
         <input type="text" id="phone" name="phone" placeholder="Phone" required onblur="Validate_Phone()">
         <span class="error-message" id="phone_error"></span><br>
 
+        <span class="required">*</span>
         <div class="whatsapp-group">
             <input type="text" id="whats" name="whats" placeholder="WhatsApp number" required>
             <button type="button" class="check-button" onclick="validateWhatsApp()">Check Number</button>
             <span class="error-message" id="whats_error"></span>
         </div><br>
 
+        <span class="required">*</span>
         <input type="text" id="address" name="address" placeholder="Address" required><br>
 
+        <span class="required">*</span>
         <input type="password" id="password" name="password" placeholder="Password" required onblur="Validate_Password()">
         <span class="error-message" id="password_error"></span><br>
 
+        <span class="required">*</span>
         <input type="password" id="confirmPassword" placeholder="Confirm Password" required onblur="Validate_Confirm_Password()">
         <span class="error-message" id="confirmPassword_error"></span><br>
 
+        <span class="required">*</span>
         <input type="email" id="email" name="email" placeholder="Email" required onblur="Validate_Email()">
         <span class="error-message" id="email_error"></span><br>
 
-        <label for="imageUpload">User Image</label>
+        <label for="imageUpload">User Image <span class="required">*</span></label>
         <div class="file-upload">
             <input type="file" id="imageUpload" name="imageUpload" accept="image/*" required>
             <label for="imageUpload" class="file-upload-label">Choose Image</label>
