@@ -9,15 +9,29 @@
 </head>
 <body>
     <header>
-        <div class="header-container">
-            <div class="logo-container">
-            <a href="index.php" class="logo">
-                <img src="logo.png" class="logo-img">
-            </a>
-            </div>
-            <div class="header-title-div">
-            
-            <h1 class="headerTitle"> Register Now & Unlock Benefits </h1>
-            </div>
+        <div class="nav">
+        <div class="logo">
+            <img src="logo.png" alt="Logo" class="logo-img">
         </div>
+        <ul class="links-container">
+            <li>
+                <a href="" class="link">
+                    <i class="fa fa-home"></i>
+                    <p>Home</p>
+                </a>
+            </li>
+            <li>
+                <a href="" class="link">
+                    <i class="fa fa-users"></i>
+                    <p>About Us</p>
+                </a>
+            </li>
+            <li>
+                <a href="" class="link">
+                    <i class="fa fa-envelope"></i>
+                    <p>Contact Us</p>
+                </a>
+            </li>
+        </ul>
+</div>
     </header>
