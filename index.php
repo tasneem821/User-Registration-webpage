@@ -33,6 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 ?>
+
 <div class="container">
     <div class="title">
         <h1 class="form-title">Registration Form</h1>
@@ -47,9 +48,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <input type="text" id="phone" name="phone" placeholder="Phone" required onblur="Validate_Phone()">
         <span class="error-message" id="phone_error"></span><br>
 
-        <input type="text" id="whats" name="whats" placeholder="WhatsApp number" required onblur="Validate_WhatsApp()">
-        <button type="button" onclick="validateWhatsApp()">Check number</button>
-        <span class="error-message" id="whats_error"></span><br>
+        <div class="whatsapp-group">
+            <input type="text" id="whats" name="whats" placeholder="WhatsApp number" required>
+            <button type="button" class="check-button" onclick="validateWhatsApp()">Check Number</button>
+            <span class="error-message" id="whats_error"></span>
+        </div><br>
 
         <input type="text" id="address" name="address" placeholder="Address" required><br>
 
@@ -63,13 +66,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <span class="error-message" id="email_error"></span><br>
 
         <label for="imageUpload">User Image</label>
-        <input type="file" id="imageUpload" name="imageUpload" accept="image/*" required><br>
+        <div class="file-upload">
+            <input type="file" id="imageUpload" name="imageUpload" accept="image/*" required>
+            <label for="imageUpload" class="file-upload-label">Choose Image</label>
+            <span class="file-name"></span>
+        </div><br>
 
         <input type="submit" value="Submit" onclick="return Validate_Form()">
     </form>
 </div>
-
-
 <script>
 
 function Validate_FullName() {
@@ -218,6 +223,12 @@ function Validate_UserName_ServerSide(str){
     }
     
 }
+
+document.getElementById('imageUpload').addEventListener('change', function() {
+    var fileName = this.files[0] ? this.files[0].name : 'No file chosen';
+    document.querySelector('.file-name').textContent = fileName;
+});
+
 </script>
 
     <?php include 'footer.php'; ?>

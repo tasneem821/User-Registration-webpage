@@ -64,7 +64,13 @@ class DB_Ops {
         // Insert user
         $stmt = $this->conn->prepare("INSERT INTO users (full_name, user_name, phone, whatsapp, address, password, email, user_image) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
         $stmt->bind_param("ssssssss", $full_name, $user_name, $phone, $whatsapp, $address, $hashed_password, $email, $user_image);
-        return $stmt->execute();
+        //return $stmt->execute();
+        if ($stmt->execute()) {
+            // Run backup only if the insert was successful
+            include 'backup.php';
+            return true;
+        }
+        return false;
     }
     public function checkUserNameExist($q){
         $stmt = mysqli_stmt_init($this->conn);

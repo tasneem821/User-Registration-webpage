@@ -8,7 +8,7 @@ function validateWhatsApp() {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            'X-RapidAPI-Key': '6f5b01fd2emshb9ed1c7e9729747p1fae56jsn811af1b6003e',
+            'X-RapidAPI-Key': 'b735943cfcmsh43f345398504e61p195291jsn59e3f2935f51',
             'X-RapidAPI-Host': 'whatsapp-number-validator3.p.rapidapi.com'
         },
         body: JSON.stringify({
@@ -23,6 +23,7 @@ function validateWhatsApp() {
         if (result && result.status === "valid") {
             alert("valid WhatsApp number");
         } else {
+            console.log("Full API Response:", data);
             alert("this number is not registered on WhatsApp");
         }
     })

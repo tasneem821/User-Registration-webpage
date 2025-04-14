@@ -176,3 +176,88 @@ label{
     font-size: 14px;
     display: block;
 }
+
+/* WhatsApp input and button group */
+.whatsapp-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 5px;
+}
+
+.whatsapp-group input {
+    flex: 1; /* Input takes most of the space */
+}
+
+.check-button {
+    background: linear-gradient(to right, hsla(256, 72%, 46%, 1), hsla(241, 72%, 46%, 0.3));
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: all 0.3s ease-in-out;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.check-button:hover {
+    background: linear-gradient(to right, #9d4edd, #5a189a);
+    transform: scale(1.05);
+    box-shadow: 1px 2px 8px rgba(0, 0, 0, 0.6);
+}
+
+.check-button:active {
+    transform: scale(0.95);
+}
+
+/* File upload styling */
+.file-upload {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 5px;
+}
+
+.file-upload input[type="file"] {
+    display: none; /* Hide default file input */
+}
+
+.file-upload-label {
+    background: linear-gradient(to right, hsla(256, 72%, 46%, 1), hsla(241, 72%, 46%, 0.3));
+    color: white;
+    padding: 8px 16px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: all 0.3s ease-in-out;
+    display: inline-block;
+    text-align: center;
+}
+
+.file-upload-label:hover {
+    background: linear-gradient(to right, #9d4edd, #5a189a);
+    transform: scale(1.05);
+    box-shadow: 1px 2px 8px rgba(0, 0, 0, 0.6);
+}
+
+.file-upload-label:active {
+    transform: scale(0.95);
+}
+
+.file-name {
+    color: #666;
+    font-size: 14px;
+    max-width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
