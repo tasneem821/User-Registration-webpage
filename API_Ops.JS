@@ -8,7 +8,7 @@ function validateWhatsApp() {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            'X-RapidAPI-Key': 'b735943cfcmsh43f345398504e61p195291jsn59e3f2935f51',
+            'X-RapidAPI-Key': 'bfcbf612dbmshb02c835b3870c33p149424jsn82ad6d017bca',
             'X-RapidAPI-Host': 'whatsapp-number-validator3.p.rapidapi.com'
         },
         body: JSON.stringify({
