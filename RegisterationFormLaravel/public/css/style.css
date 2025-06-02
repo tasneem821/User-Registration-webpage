@@ -1,0 +1,303 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
+}
+body{
+
+    background:rgb(249, 237, 255);
+
+  
+}
+.container{
+    background:#fff;
+    width:450px;
+    padding:20px;
+    margin:50px auto;
+    border-radius:10px;
+    box-shadow: 1px 2px 8px rgba(0, 0, 0, 1);
+    
+}
+form{
+    margin:0 32px;
+}
+.form-title{
+    background: linear-gradient(to bottom,hsla(256, 72%, 46%, 1),hsla(241, 72%, 46%, .3));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size:25px;
+    font-weight:700;
+    text-align:center;
+    padding:1.3rem;
+    margin-bottom:0.4rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    text-transform: uppercase;
+}
+
+input{
+    width: 100%;
+    padding: 10px;
+    border: none;  
+    border-bottom: 2px solid #c8acdc; 
+    outline: none; 
+    font-size: 16px;
+    background: transparent; 
+    transition: border-bottom 0.3s ease-in-out;
+    margin-bottom:5px;
+}
+
+input:focus {
+    border-bottom: 2px solid #681e8a; 
+}
+input[type="submit"]{
+    background:linear-gradient(to right,hsla(256, 72%, 46%, 1),hsla(241, 72%, 46%,.3));
+    color:white;
+    padding:10px 20px;
+    border:none;
+    border-radius:50px;
+    cursor:pointer;
+   height: 50px;
+   font-size: 20px;
+   margin-top: 10px;
+}
+
+input[type="submit"]:hover{
+    background: linear-gradient(to right, #9d4edd, #5a189a);
+    transform: scale(1.05);
+    box-shadow: 1px 2px 8px rgba(0, 0, 0, 0.6);
+}
+label{
+    display:block;
+    margin-bottom:5px;
+    margin-top: 5px;
+    font-weight:bold;
+    text-transform:uppercase;
+    font-size:14px;
+    transition: 0.3s;
+    color:#666;
+    padding-left: 7px;
+
+}
+ header,footer {
+    background: linear-gradient(to bottom,#6a0dad, #8e44ad);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+
+}
+.nav{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items:center;
+    height: 40px;
+    padding: 0.2rem 2rem;
+}
+
+ul {
+    padding: 0;
+}
+.links-container {
+    display: flex;
+    list-style-type: none;
+    gap: 6rem;
+    justify-content: space-between;
+    align-items: center;
+}
+.link {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    font-weight: bold;
+    text-decoration: none;
+    color: #fff;
+    cursor: pointer;
+    position: relative;
+}
+.link::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0%;
+    height: 4px;
+    background-color: #f9ac75;
+    transform: translateY(100%);
+    transition: width 0.3s ease;
+    border-radius: 2px;
+}
+
+.link:hover::after {
+    width: 100%;
+}
+
+.logo{
+    width: 150px;
+    height: 150px;
+    
+}
+.logo-img{
+    margin-top: 23px;
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+}
+
+
+.footerContainer {
+
+    align-items: center;
+    justify-content: center;
+}
+
+.footerText p {
+    margin-top: 25px;
+    font-size: 20px;
+    font-weight: 500px;
+}
+
+.socialIcons {
+    margin-top: 10px;
+}
+
+.socialIcons a {
+    background-color: white;
+    margin: 10px;
+    border-radius: 50%;
+    padding: 10px;
+}
+
+
+
+.socialIcons a i {
+    font-size: 24px;
+    color: #5a189a;
+    opacity: .9;
+}
+
+.socialIcons a i:active {
+    color: #5a189a;
+    transition: 0.5s;
+}
+.socialIcons a i:hover {
+    color: #d8b4fe;
+    transition: .5s;
+}
+
+
+
+
+.error-message {
+    color: red;
+    font-size: 14px;
+    display: block;
+}
+
+/* WhatsApp input and button group */
+.whatsapp-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 5px;
+}
+
+.whatsapp-group input {
+    flex: 1; /* Input takes most of the space */
+}
+
+.check-button {
+    background: linear-gradient(to right, hsla(256, 72%, 46%, 1), hsla(241, 72%, 46%, 0.3));
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: all 0.3s ease-in-out;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.check-button:hover {
+    background: linear-gradient(to right, #9d4edd, #5a189a);
+    transform: scale(1.05);
+    box-shadow: 1px 2px 8px rgba(0, 0, 0, 0.6);
+}
+
+.check-button:active {
+    transform: scale(0.95);
+}
+
+/* File upload styling */
+.file-upload {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 5px;
+}
+
+.file-upload input[type="file"] {
+    display: none; /* Hide default file input */
+}
+
+.file-upload-label {
+    background: linear-gradient(to right, hsla(256, 72%, 46%, 1), hsla(241, 72%, 46%, 0.3));
+    color: white;
+    padding: 8px 16px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: all 0.3s ease-in-out;
+    display: inline-block;
+    text-align: center;
+}
+
+.file-upload-label:hover {
+    background: linear-gradient(to right, #9d4edd, #5a189a);
+    transform: scale(1.05);
+    box-shadow: 1px 2px 8px rgba(0, 0, 0, 0.6);
+}
+
+.file-upload-label:active {
+    transform: scale(0.95);
+}
+
+.file-name {
+    color: #666;
+    font-size: 14px;
+    max-width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.required{
+    color: red;
+    font-size: 16px;
+}
+.language-switcher {
+    margin-left: auto;
+    padding: 0 1rem;
+    font-weight: bold;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.language-switcher a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.language-switcher a:hover {
+    text-decoration: underline;
+}
