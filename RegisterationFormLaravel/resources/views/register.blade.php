@@ -5,7 +5,9 @@
     <div class="title">
         <h1 class="form-title">{{ __('messages.register_title') }}</h1>
     </div>
-    <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data" onsubmit="return Validate_Form();">
+    {{-- <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data" onsubmit="return Validate_Form();"> --}}
+    <form method="POST" action="{{ route('register.store') }}" enctype="multipart/form-data" onsubmit="return Validate_Form();">
+
         @csrf
 
         <span class="required">*</span>
