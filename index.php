@@ -224,9 +224,12 @@ function Validate_UserName_ServerSide(str){
         xmlhttp.onreadystatechange=function(){
         if(this.readyState==4&&this.status==200){
             error.innerHTML=this.responseText;
+            if (this.responseText) {
+                document.getElementById("username").value = "";
+            }
         }
     };
-    xmlhttp.open("GET","DB_Ops.php?q="+str);
+    xmlhttp.open("GET","DB_Ops.php?q=" + encodeURIComponent(str));
     xmlhttp.send();
     }
     

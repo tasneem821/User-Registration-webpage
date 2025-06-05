@@ -130,19 +130,21 @@ function Validate_FullName() {
     return isValid;
 }
 
-function Validate_UserName_ServerSide(str){
-    if(Validate_UserName()){
+function Validate_UserName_ServerSide(str) {
+    if (Validate_UserName()) {
         var error = document.getElementById("username_error");
-        var xmlhttp=new XMLHttpRequest();
-        xmlhttp.onreadystatechange=function(){
-        if(this.readyState==4&&this.status==200){
-            error.innerHTML=this.responseText;
-        }
-    };
-    xmlhttp.open("GET","DB_Ops.php?q="+str);
-    xmlhttp.send();
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                error.textContent = this.responseText;
+                if (this.responseText) {
+                    document.getElementById("username").value = "";
+                }
+            }
+        };
+        xhr.open("GET", window.checkUsernameUrl + "?username=" + encodeURIComponent(str), true);
+        xhr.send();
     }
-    
 }
 
 document.getElementById('imageUpload').addEventListener('change', function() {

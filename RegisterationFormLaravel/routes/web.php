@@ -12,6 +12,8 @@ Route::get('/register', function () {
     return view('register');
 })->name('register');
 
+Route::get('/check-username', [RegisteredUsersController::class, 'checkUsername'])->name('check.username');
+
 Route::post('/register', [RegisteredUsersController::class, 'store'])->name('register.store');
 
 Route::get('lang/{locale}', function ($locale) {

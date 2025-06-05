@@ -15,7 +15,7 @@
         <span class="error-message" id="fullname_error"></span><br>
 
         <span class="required">*</span>
-        <input type="text" id="username" name="username" placeholder="{{ __('messages.username') }}" required onblur="Validate_UserName()">
+        <input type="text" id="username" name="username" placeholder="{{ __('messages.username') }}" required onblur="Validate_UserName_ServerSide(this.value)">
         <span class="error-message" id="username_error"></span><br>
 
         <span class="required">*</span>
@@ -54,5 +54,8 @@
         <input type="submit" value="{{ __('messages.create_account') }}">
     </form>
 </div>
+<script>
+    window.checkUsernameUrl = "{{ route('check.username') }}";
+</script>
 <script src="{{ asset('js/validation.js') }}"></script>
 @endsection

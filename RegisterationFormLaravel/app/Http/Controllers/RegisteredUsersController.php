@@ -49,4 +49,10 @@ class RegisteredUsersController extends Controller
         // 4. REDIRECT WITH SUCCESS
         return back()->with('success', 'User registered successfully!');
     }
+    public function checkUsername(Request $request)
+{
+    $username = $request->query('username');
+    $exists = RegisteredUsers::where('username', $username)->exists();
+    return $exists ? 'Username already exists. Please choose another one.' : '';
+}
 }
