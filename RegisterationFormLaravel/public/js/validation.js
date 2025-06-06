@@ -42,23 +42,55 @@ function Validate_FullName() {
         return true;
     }
 
-
     function Validate_WhatsApp() {
-    var whatsApp = document.getElementById("whats");
-    var error = document.getElementById("whats_error");
-    var phonePattern = /^01[0-2,5]{1}[0-9]{8}$/; 
+        const whatsAppInput = document.getElementById("whats");
+        var error = document.getElementById("whats_error");
     
-    if (!phonePattern.test(whatsApp.value)) {
-        error.textContent =  "Please enter a valid whatsapp number with 11 digits, starting with 010, 012, 011, or 015.";
-        whatsApp.value = ""; 
-        return false;
-    } else {
-        error.textContent = "";
+        whatsAppInput.classList.remove('is-valid', 'is-invalid');
+    
+        const phonePattern = /^01[0125][0-9]{8}$/;
+        if (!phonePattern.test(whatsAppInput.value)) {
+           error.textContent= "Please enter a valid whatsapp number with 11 digits, starting with 010, 012, 011, or 015.";
+            whatsAppInput.classList.add('is-invalid');
+            return false;
+        }
+    
+        const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
+        if (!csrfToken) {
+           alert("Security token missing - please refresh the page");
+            return false;
+        }
+    
+        fetch("/check-whatsapp", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': csrfToken,
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify({ whats: whatsAppInput.value }),
+            credentials: 'same-origin'
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log("Full API Response:", data);
+    
+            if (data.valid) {
+                alert("valid WhatsApp number");
+                whatsAppInput.classList.add('is-valid');
+            } else {
+                alert("Invalid WhatsApp number");
+                whatsAppInput.classList.add('is-invalid');
+            }
+        })
+        .catch(error => {
+            alert("WhatsApp validation service unavailable. Please try again later."); 
+            whatsAppInput.classList.add('is-invalid');
+            console.error("Validation error:", error);
+        });
     }
-    return true;
-}
-
-
+    
+    
     function Validate_Password() {
         var password = document.getElementById("password");
         var error = document.getElementById("password_error");

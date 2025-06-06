@@ -34,5 +34,9 @@ return [
             'channel' => env('SLACK_BOT_USER_DEFAULT_CHANNEL'),
         ],
     ],
-
+    'rapidapi' => [
+        'key' => env('RAPIDAPI_KEY'),
+        'whatsapp_host' => env('WHATSAPP_VALIDATOR_HOST'),
+    ],
+    
 ];

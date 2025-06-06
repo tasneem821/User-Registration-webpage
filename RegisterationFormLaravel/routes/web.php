@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\RegisteredUsersController;
+use App\HTTP\Controllers\WhatsAppController;
 
 
 
@@ -23,3 +24,5 @@ Route::get('lang/{locale}', function ($locale) {
     }
     return redirect()->back();
 })->name('lang.switch');
+
+Route::post('/check-whatsapp', [WhatsAppController::class, 'checkWhatsAppNumber'])->name('check.whatsapp');
