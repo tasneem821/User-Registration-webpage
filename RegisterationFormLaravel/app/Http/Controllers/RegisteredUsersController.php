@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\RegisteredUsers;
 use Illuminate\Support\Facades\Hash;
+use App\Mail\NewUserRegistered;
+use Illuminate\Support\Facades\Mail;
 
 class RegisteredUsersController extends Controller
 {
@@ -35,7 +37,7 @@ class RegisteredUsersController extends Controller
         }
 
         // 3. CREATE USER
-        RegisteredUsers::create([
+        $user =RegisteredUsers::create([
             'fullname' => $validated['fullname'],
             'username' => $validated['username'],
             'phone' => $validated['phone'],
@@ -46,6 +48,7 @@ class RegisteredUsersController extends Controller
             'imageUpload' => $filename,
         ]);
 
+        Mail::to('testtt3325@gmail.com')->send(new NewUserRegistered($user));
         // 4. REDIRECT WITH SUCCESS
         return back()->with('success', 'User registered successfully!');
     }
