@@ -41,10 +41,12 @@ function Validate_FullName() {
         }
         return true;
     }
+    let isWhatsAppVerified = false;
 
     function Validate_WhatsApp() {
         const whatsAppInput = document.getElementById("whats");
         var error = document.getElementById("whats_error");
+        isWhatsAppVerified = false;
     
         whatsAppInput.classList.remove('is-valid', 'is-invalid');
     
@@ -78,6 +80,7 @@ function Validate_FullName() {
             if (data.valid) {
                 alert("valid WhatsApp number");
                 whatsAppInput.classList.add('is-valid');
+                isWhatsAppVerified = true;
             } else {
                 alert("Invalid WhatsApp number");
                 whatsAppInput.classList.add('is-invalid');
@@ -142,7 +145,10 @@ function Validate_FullName() {
     if (!Validate_FullName()) isValid = false;
     if (!Validate_UserName()) isValid = false;
     if (!Validate_Phone()) isValid = false;
-    if (!Validate_WhatsApp()) isValid = false;
+    if (!isWhatsAppVerified) {
+        alert("Please verify your WhatsApp number before submitting.");
+        isValid = false;
+    }
     if (!Validate_Password()) isValid = false;
     if (!Validate_Confirm_Password()) isValid = false;
     if (!Validate_Email()) isValid = false;
