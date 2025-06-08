@@ -148,7 +148,7 @@ function Validate_FullName() {
     if (!isWhatsAppVerified) {
         alert("Please verify your WhatsApp number before submitting.");
         isValid = false;
-        isValid = false;
+      
     }
     if (!Validate_Password()) isValid = false;
     if (!Validate_Confirm_Password()) isValid = false;
