@@ -1,6 +1,3 @@
-<head>
-<meta name="csrf-token" content="{{ csrf_token() }}">
-    </head>
 @extends('layouts.app')
 
 @section('content')
@@ -8,8 +5,8 @@
     <div class="title">
         <h1 class="form-title">{{ __('messages.register_title') }}</h1>
     </div>
-    {{-- <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data" onsubmit="return Validate_Form();"> --}}
     <form method="POST" action="{{ route('register.store') }}" enctype="multipart/form-data" onsubmit="return Validate_Form();">
+
 
         @csrf
 
@@ -59,6 +56,21 @@
 </div>
 <script>
     window.checkUsernameUrl = "{{ route('check.username') }}";
+    var validationMessages = {
+        username_error: "{{ __('messages.user_name_error') }}",
+        whatsapp: "{{ __('messages.whatsapp') }}",
+        whatsapp_valid: "{{ __('messages.whatsapp_valid') }}",
+        whatsapp_invalid: "{{ __('messages.whatsapp_invalid') }}",
+        whatsapp_unavailable: "{{ __('messages.whatsapp_unavailable') }}",
+        whatsapp_verify: "{{ __('messages.whatsapp_verify') }}",
+        address: "{{ __('messages.address_error') }}",
+        image: "{{ __('messages.image_error') }}",
+        full_name_error: "{{ __('messages.full_name_error') }}",
+        phone_error: "{{ __('messages.phone_error') }}",
+        email_error: "{{ __('messages.email_error') }}",
+        password_error: "{{ __('messages.password_error') }}",
+        confirm_password_error: "{{ __('messages.confirm_password_error') }}"
+    };
 </script>
 <script src="{{ asset('js/validation.js') }}"></script>
 @endsection
