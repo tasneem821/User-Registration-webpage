@@ -10,6 +10,10 @@ use Illuminate\Support\Facades\Mail;
 
 class RegisteredUsersController extends Controller
 {
+    public function index(){
+         session()->put('locale','en');
+         return view('register');
+    }
     public function store(Request $request)
     {
         // 1. VALIDATION
