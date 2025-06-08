@@ -22,6 +22,6 @@ Route::get('en',function(){
     return redirect()->back();
 })->name('en');
 
-Route::post('/store_register', [RegisteredUsersController::class, 'store'])->name('register.store');
-Route::post('/register', [RegisteredUsersController::class, 'index'])->name('register.index');
+Route::post('/register', [RegisteredUsersController::class, 'store'])->name('register.store');
+Route::post('/register_index', [RegisteredUsersController::class, 'index'])->name('register.index');
 Route::post('/check-whatsapp', [WhatsAppController::class, 'checkWhatsAppNumber'])->name('check.whatsapp');
