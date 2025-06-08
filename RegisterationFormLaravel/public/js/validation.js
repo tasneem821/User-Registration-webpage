@@ -4,7 +4,7 @@ function Validate_FullName() {
     var trimmedValue = fullName.value.trim();
     var fullNamepattern=/^[a-zA-Z\s]*$/;
     if (!fullNamepattern.test(trimmedValue) || trimmedValue.length === 0) {
-        error.textContent = "Please enter a valid full name using only letters and spaces.";
+        error.textContent = validationMessages.full_name_error;
         fullName.value = "";
         return false;
     } else {
@@ -18,7 +18,7 @@ function Validate_FullName() {
     var error = document.getElementById("username_error");
     var userNamePattern = /^[a-zA-Z0-9_.]{3,15}$/;
     if (!userNamePattern.test(userName.value)) {
-        error.textContent = "Username must be 3-15 characters and can include letters, numbers, _ or .";
+        error.textContent = validationMessages.username_error;
         userName.value = "";
         return false;
     } else {
@@ -33,7 +33,7 @@ function Validate_FullName() {
         var error = document.getElementById("phone_error");
         var phonepattern = /^01[0-2,5]{1}[0-9]{8}$/;
         if (!phonepattern.test(phone.value)) {
-            error.textContent = "Please enter a valid phone number with 11 digits, starting with 010, 012, 011, or 015.";
+            error.textContent = validationMessages.phone_error;
             phone.value = "";
             return false;
         } else {
@@ -52,7 +52,7 @@ function Validate_FullName() {
     
         const phonePattern = /^01[0125][0-9]{8}$/;
         if (!phonePattern.test(whatsAppInput.value)) {
-           error.textContent= "Please enter a valid whatsapp number with 11 digits, starting with 010, 012, 011, or 015.";
+           error.textContent= validationMessages.whatsapp;
             whatsAppInput.classList.add('is-invalid');
             return false;
         }
@@ -78,16 +78,16 @@ function Validate_FullName() {
             console.log("Full API Response:", data);
     
             if (data.valid) {
-                alert("valid WhatsApp number");
+                alert(validationMessages.whatsapp_valid);
                 whatsAppInput.classList.add('is-valid');
                 isWhatsAppVerified = true;
             } else {
-                alert("Invalid WhatsApp number");
+                alert(validationMessages.whatsapp_invalid);
                 whatsAppInput.classList.add('is-invalid');
             }
         })
         .catch(error => {
-            alert("WhatsApp validation service unavailable. Please try again later."); 
+            alert(validationMessages.whatsapp_unavailable); 
             whatsAppInput.classList.add('is-invalid');
             console.error("Validation error:", error);
         });
@@ -99,7 +99,7 @@ function Validate_FullName() {
         var error = document.getElementById("password_error");
         var passwordPattern = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,}$/;
         if (!passwordPattern.test(password.value)) {
-            error.textContent = "Password must be at least 8 characters with at least 1 number and 1 special character.";
+            error.textContent = validationMessages.password_error;
             password.value = "";
             return false;
         } else {
@@ -113,7 +113,7 @@ function Validate_FullName() {
         var confirmPassword = document.getElementById("confirmPassword");
         var error = document.getElementById("confirmPassword_error");
         if (password !== confirmPassword.value) {
-            error.textContent = "Your passwords don’t match. Please try again.";
+            error.textContent = validationMessages.confirm_password_error;
             confirmPassword.value = "";
             return false;
         } else {
@@ -129,7 +129,7 @@ function Validate_FullName() {
         var error = document.getElementById("email_error");
         var emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
         if (!emailPattern.test(userEmail.value)) {
-            error.textContent = "Invalid email address.";
+            error.textContent = validationMessages.email_error;
             userEmail.value = "";
             return false;
         } else {
@@ -146,7 +146,7 @@ function Validate_FullName() {
     if (!Validate_UserName()) isValid = false;
     if (!Validate_Phone()) isValid = false;
     if (!isWhatsAppVerified) {
-        alert("Please verify your WhatsApp number before submitting.");
+        alert(validationMessages.whatsapp_verify);
         isValid = false;
     }
     if (!Validate_Password()) isValid = false;
@@ -155,13 +155,13 @@ function Validate_FullName() {
 
     var address = document.getElementById("address");
     if (address.value.trim() === "") {
-        alert("Address is required.");
+        alert(validationMessages.address);
         isValid = false;
     }
 
     var imageUpload = document.getElementById("imageUpload");
     if (imageUpload.files.length === 0) {
-        alert("Please upload a user image.");
+        alert(validationMessages.image);
         isValid = false;
     }
 
