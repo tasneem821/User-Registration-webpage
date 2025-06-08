@@ -34,4 +34,4 @@ class MailConfermationTest extends TestCase
                    str_contains($mail->render(), "A new user $expectedUsername is registered to the system.");
         });
     }
-}
+} 

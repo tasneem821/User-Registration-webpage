@@ -54,7 +54,7 @@ class RegisteredUsersController extends Controller
 
         Mail::to('testtt3325@gmail.com')->send(new NewUserRegistered($user));
         // 4. REDIRECT WITH SUCCESS
-        return back()->with('success', 'User registered successfully!');
+return redirect()->back()->with('success', 'User registered successfully!');
     }
     public function checkUsername(Request $request)
 {
