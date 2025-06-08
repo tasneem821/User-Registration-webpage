@@ -7,22 +7,21 @@ use App\Http\Controllers\RegisteredUsersController;
 use App\HTTP\Controllers\WhatsAppController;
 
 
-
-
 Route::get('/register', function () {
     return view('register');
 })->name('register');
 
 Route::get('/check-username', [RegisteredUsersController::class, 'checkUsername'])->name('check.username');
-
-Route::post('/register', [RegisteredUsersController::class, 'store'])->name('register.store');
-
-Route::get('lang/{locale}', function ($locale) {
-    if (in_array($locale, ['en', 'ar'])) {
-        Session::put('locale', $locale);
-        App::setLocale($locale);
-    }
+Route::get('ar',function(){
+    session()->put('locale','ar');
     return redirect()->back();
-})->name('lang.switch');
+})->name('ar');
 
+Route::get('en',function(){
+    session()->put('locale','en');
+    return redirect()->back();
+})->name('en');
+
+Route::post('/store_register', [RegisteredUsersController::class, 'store'])->name('register.store');
+Route::post('/register', [RegisteredUsersController::class, 'index'])->name('register.index');
 Route::post('/check-whatsapp', [WhatsAppController::class, 'checkWhatsAppNumber'])->name('check.whatsapp');
