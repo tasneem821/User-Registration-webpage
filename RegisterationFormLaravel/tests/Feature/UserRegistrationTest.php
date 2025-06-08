@@ -88,5 +88,22 @@ public function user_can_register_successfully()
 
         $this->assertNotEquals('Pass@1234', $user->password);
     }
+    /** @test */
+public function registration_fails_if_fullname_is_missing()
+{
+    $response = $this->post('/register', [
+        'fullname' => '',
+        'username' => 'nofullnameuser',
+        'phone' => '01000000003',
+        'whats' => '01000000003',
+        'address' => 'No Name Address',
+        'password' => 'Pass@1234',
+        'password_confirmation' => 'Pass@1234',
+        'email' => 'noname@example.com',
+    ]);
+
+    $response->assertSessionHasErrors('fullname');
+}
+
 
 }

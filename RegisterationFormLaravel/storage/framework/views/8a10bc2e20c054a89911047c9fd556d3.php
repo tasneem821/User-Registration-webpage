@@ -5,8 +5,8 @@
     <div class="title">
         <h1 class="form-title"><?php echo e(__('messages.register_title')); ?></h1>
     </div>
-    
     <form method="POST" action="<?php echo e(route('register.store')); ?>" enctype="multipart/form-data" onsubmit="return Validate_Form();">
+
 
         <?php echo csrf_field(); ?>
 
@@ -15,7 +15,7 @@
         <span class="error-message" id="fullname_error"></span><br>
 
         <span class="required">*</span>
-        <input type="text" id="username" name="username" placeholder="<?php echo e(__('messages.username')); ?>" required onblur="Validate_UserName()">
+        <input type="text" id="username" name="username" placeholder="<?php echo e(__('messages.username')); ?>" required onblur="Validate_UserName_ServerSide(this.value)">
         <span class="error-message" id="username_error"></span><br>
 
         <span class="required">*</span>
@@ -54,6 +54,24 @@
         <input type="submit" value="<?php echo e(__('messages.create_account')); ?>">
     </form>
 </div>
+<script>
+    window.checkUsernameUrl = "<?php echo e(route('check.username')); ?>";
+    var validationMessages = {
+        username_error: "<?php echo e(__('messages.user_name_error')); ?>",
+        whatsapp: "<?php echo e(__('messages.whatsapp')); ?>",
+        whatsapp_valid: "<?php echo e(__('messages.whatsapp_valid')); ?>",
+        whatsapp_invalid: "<?php echo e(__('messages.whatsapp_invalid')); ?>",
+        whatsapp_unavailable: "<?php echo e(__('messages.whatsapp_unavailable')); ?>",
+        whatsapp_verify: "<?php echo e(__('messages.whatsapp_verify')); ?>",
+        address: "<?php echo e(__('messages.address_error')); ?>",
+        image: "<?php echo e(__('messages.image_error')); ?>",
+        full_name_error: "<?php echo e(__('messages.full_name_error')); ?>",
+        phone_error: "<?php echo e(__('messages.phone_error')); ?>",
+        email_error: "<?php echo e(__('messages.email_error')); ?>",
+        password_error: "<?php echo e(__('messages.password_error')); ?>",
+        confirm_password_error: "<?php echo e(__('messages.confirm_password_error')); ?>"
+    };
+</script>
 <script src="<?php echo e(asset('js/validation.js')); ?>"></script>
 <?php $__env->stopSection(); ?>
 
