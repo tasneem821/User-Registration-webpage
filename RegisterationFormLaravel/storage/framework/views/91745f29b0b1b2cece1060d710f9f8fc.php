@@ -5,27 +5,27 @@
         </div>
 
         <div class="language-switcher">
-            <a href="<?php echo e(url('lang/en')); ?>">English</a> |
-            <a href="<?php echo e(url('lang/ar')); ?>">عربي</a>
+            <a href="<?php echo e(route('en')); ?>"><?php echo e(__('messages.english')); ?></a> |
+            <a href="<?php echo e(route('ar')); ?>"><?php echo e(__('messages.arabic')); ?></a>
         </div>
 
         <ul class="links-container">
             <li>
                 <a href="#" class="link">
                     <i class="fa fa-home"></i>
-                    <p>Home</p>
+                    <p><?php echo e(__('messages.home')); ?></p>
                 </a>
             </li>
             <li>
                 <a href="#" class="link">
                     <i class="fa fa-users"></i>
-                    <p>About Us</p>
+                    <p><?php echo e(__('messages.about_us')); ?></p>
                 </a>
             </li>
             <li>
                 <a href="#" class="link">
                     <i class="fa fa-envelope"></i>
-                    <p>Contact Us</p>
+                    <p><?php echo e(__('messages.contact_us')); ?></p>
                 </a>
             </li>
         </ul>
