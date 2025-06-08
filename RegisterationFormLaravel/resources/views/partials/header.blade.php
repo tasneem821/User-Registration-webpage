@@ -5,27 +5,27 @@
         </div>
 
         <div class="language-switcher">
-            <a href="{{ url('lang/en') }}">English</a> |
-            <a href="{{ url('lang/ar') }}">عربي</a>
+            <a href="{{ route('en') }}">{{ __('messages.english') }}</a> |
+            <a href="{{ route('ar')}}">{{ __('messages.arabic') }}</a>
         </div>
 
         <ul class="links-container">
             <li>
                 <a href="#" class="link">
                     <i class="fa fa-home"></i>
-                    <p>Home</p>
+                    <p>{{__('messages.home')}}</p>
                 </a>
             </li>
             <li>
                 <a href="#" class="link">
                     <i class="fa fa-users"></i>
-                    <p>About Us</p>
+                    <p>{{__('messages.about_us')}}</p>
                 </a>
             </li>
             <li>
                 <a href="#" class="link">
                     <i class="fa fa-envelope"></i>
-                    <p>Contact Us</p>
+                    <p>{{__('messages.contact_us')}}</p>
                 </a>
             </li>
         </ul>
