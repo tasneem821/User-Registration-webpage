@@ -19,20 +19,15 @@ class UsernameAjaxTest extends TestCase
     }
     
     public function test_returns_error_message_when_username_exists()
-    {
-        RegisteredUsers::create([
-            'fullname' => 'Test User',
-            'username' => 'existinguser',
-            'phone' => '01234567890',
-            'whats' => '01234567890',
-            'address' => '123 Test St',
-            'password' => bcrypt('password123'),
-            'email' => 'test@example.com',
-            'imageUpload' => 'test.jpg'
-        ]);
+{
 
-        $response = $this->get('/check-username?username=existinguser');
-        $response->assertStatus(200);
-        $response->assertSee('Username already exists. Please choose another one.');
-    }
+    RegisteredUsers::factory()->create([
+        'username' => 'existinguser' 
+    ]);
+
+    $response = $this->get('/check-username?username=existinguser');
+    
+    $response->assertStatus(200);
+    $response->assertSee('Username already exists. Please choose another one.');
+}
 }
