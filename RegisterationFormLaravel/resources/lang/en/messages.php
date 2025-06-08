@@ -1,5 +1,10 @@
 <?php
 return [
+    'english' => 'English',
+    'arabic' => 'Arabic',
+    'home' => 'Home',
+    'about_us'=> 'About us',
+    'contact_us'=> 'Contact Us',
     'register_title' => 'Registration Form',
     'name' => 'Full Name',
     'username' => 'Username',
@@ -14,5 +19,21 @@ return [
     'user_image' => 'User Image',
     'choose_image' => 'Choose Image',
     'check_number' => 'Check Number',
+    'required_field' => '*',
+    'full_name_error' => 'Full name must contain only letters and spaces.',
+    'user_name_error'=>'Username must be 3-15 characters and can include letters, numbers, _ or .',
+    'phone_error' => 'Invalid Egyptian phone number. It should be 11 digits and start with 010, 011, 012, or 015.',
+    'email_error' => 'Invalid email address.',
+    'password_error' => 'Password must be at least 8 characters with at least 1 number and 1 special character.',
+    'confirm_password_error' => 'Passwords do not match.',
+    'whatsapp' => 'Please enter a valid WhatsApp number with 11 digits, starting with 010, 012, 011, or 015.',
+    'whatsapp_valid' => 'Valid WhatsApp number.',
+    'whatsapp_invalid' => 'Invalid WhatsApp number.',
+    'whatsapp_unavailable' => 'WhatsApp validation service unavailable. Please try again later.',
+    'whatsapp_verify_error' => 'Please verify your WhatsApp number before submitting.',
+    'address_error' => 'Address is required.',
+    'image_error' => 'Please upload a user image.',
+
+    'footer' => 'Copyright ©️ 2025 Registration Form. All rights reserved.',
 
 ];
